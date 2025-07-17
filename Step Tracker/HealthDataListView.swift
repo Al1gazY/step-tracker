@@ -10,7 +10,6 @@ import SwiftUI
 struct HealthDataListView: View {
     
     @State private var isShowingAddData = false
-    
     @State private var addDataDate: Date = .now
     @State private var valueToAdd: String = ""
     
