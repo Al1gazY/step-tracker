@@ -9,11 +9,37 @@ import Foundation
 import HealthKit
 import Observation
 
-enum STError: Error {
+enum STError: LocalizedError {
     case authNotDetermined
     case sharingDenied(quantityType: String)
     case noData
     case unableToCompleteRequest
+    
+    var errorDescription: String? {
+        switch self {
+        case .authNotDetermined:
+            return "HealthKit authorization not determined."
+        case .sharingDenied(quantityType: let type):
+            return "Sharing \(type) is denied."
+        case .noData:
+            return "No data available."
+        case .unableToCompleteRequest:
+            return "Unable to complete request."
+        }
+    }
+    
+    var failureReason: String {
+        switch self {
+        case .authNotDetermined:
+            "You have not given access to your Health data."
+        case .sharingDenied(quantityType: let type):
+            "You have denied access to sharing \(type)."
+        case .noData:
+            "There is no data for this Heath statistic."
+         case .unableToCompleteRequest:
+            "We are unable to complete your request."
+        }
+    }
 }
 
 @Observable class HealthKitManager {
