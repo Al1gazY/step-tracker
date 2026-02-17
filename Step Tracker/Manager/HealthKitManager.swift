@@ -14,6 +14,7 @@ enum STError: LocalizedError {
     case sharingDenied(quantityType: String)
     case noData
     case unableToCompleteRequest
+    case invalidValue
     
     var errorDescription: String? {
         switch self {
@@ -25,6 +26,8 @@ enum STError: LocalizedError {
             return "No data available."
         case .unableToCompleteRequest:
             return "Unable to complete request."
+        case .invalidValue:
+            return "Inalid value"
         }
     }
     
@@ -38,6 +41,8 @@ enum STError: LocalizedError {
             "There is no data for this Heath statistic."
          case .unableToCompleteRequest:
             "We are unable to complete your request."
+        case .invalidValue:
+            "Must be a numeric value"
         }
     }
 }
